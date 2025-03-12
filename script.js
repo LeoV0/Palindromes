@@ -1,16 +1,48 @@
-// 1. Enoncé
+let myArray = [];
+let dateResult;
 
-// Les palindromes sont des mots ou des suites de caractères qui se lisent dans les deux sens, comme les mots “radar” ou “kayak”. Le but de cet exercice est de détecter des dates palindromes, date que l’on peut donc lire dans les deux sens, sans prendre en compte le séparateur de date (/).
+function isValidDate(date) {
+  myArray.push(date);
+  console.log(myArray);
+  const destructure = myArray[0].split("/").map(Number);
+  console.log(destructure);
+  if (
+    destructure[0] < 1 ||
+    destructure[0] > 31 ||
+    destructure[1] < 1 ||
+    destructure[1] > 12 ||
+    destructure[2] < 999 ||
+    destructure[2] > 9999
+  ) {
+    console.log("La date n'est pas valide");
+    return;
+  } else if (destructure[1] % 2 === 1 && destructure[0] === 31) {
+    console.log("Il n'y a pas de 31 du mois");
+    return;
+  } else {
+    dateResult = [
+      destructure[0].toString().padStart(2, "0"),
+      destructure[1].toString().padStart(2, "0"),
+      destructure[2].toString(),
+    ].join("");
+    console.log("La date est valide");
+    console.log(dateResult);
+    isPalindrome();
+    return [dateResult];
+  }
+}
 
-// Contraintes:
+isValidDate("30/10/2002");
 
-//     L’exercice se fera en JS
+// Étape 2
 
-// Étape 1
+// Créer une fonction isPalindrome qui prend une date en string en paramètre et retourne un booléen qui indique si la date est un palindrome. Si la date est invalide, retourner false.
 
-// Créer une fonction isValidDate qui prend en paramètre une date en string et determine si elle est valide. Pour qu'une date soit valide, il faut qu'elle existe et qu'elle soit au format dd/mm/aaaa.
+// Exemple de date palindrome: 11/02/2011. Les caractères / ne sont pas pris en compte.
 
-// Tout au long de l’exercice, on supposera des années supérieures à 999 et inférieures 9999 - autrement dit, l’année sera systématiquement représentée sur 4 caractères.
+// isPalindrome("11/02/2011") // true
+// isPalindrome("03/04/2001") // false
 
-// isValidDate("03/04/2001") // true
-// isValidDate("03/14/2001") // false car 14 n'est pas un mois valide
+function isPalindrome() {
+  console.log(dateResult.reverse());
+}
