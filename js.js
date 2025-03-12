@@ -47,6 +47,19 @@ function isPalindrome() {
   }
 }
 
+// Étape 3
+// Créer une fonction getNextPalindromes qui donne les x prochaines dates palindromes à compter d’aujourd’hui. La fonction prendra le x en paramètre.
+
+// getNextPalindromes(8)
+// 22/02/2022
+// 03/02/2030
+// 13/02/2031
+// 23/02/2032
+// 04/02/2040
+// 14/02/2041
+// 24/02/2042
+// 05/02/2050
+
 let tableau = [];
 let tableauRempli;
 let tableauReverse;
