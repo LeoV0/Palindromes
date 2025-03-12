@@ -1,5 +1,6 @@
 let myArray = [];
 let dateResult;
+let dateReverse;
 
 function isValidDate(date) {
   myArray.push(date);
@@ -25,24 +26,23 @@ function isValidDate(date) {
       destructure[1].toString().padStart(2, "0"),
       destructure[2].toString(),
     ].join("");
+
+    dateReverse = dateResult.split("").reverse().join("");
+
     console.log("La date est valide");
-    console.log(dateResult);
+    console.log(` Normal : ${dateResult}`);
+    console.log(` Reverse : ${dateReverse}`);
+
     isPalindrome();
-    return [dateResult];
+    return;
   }
 }
-
-isValidDate("30/10/2002");
-
-// Étape 2
-
-// Créer une fonction isPalindrome qui prend une date en string en paramètre et retourne un booléen qui indique si la date est un palindrome. Si la date est invalide, retourner false.
-
-// Exemple de date palindrome: 11/02/2011. Les caractères / ne sont pas pris en compte.
-
-// isPalindrome("11/02/2011") // true
-// isPalindrome("03/04/2001") // false
+isValidDate("11/12/2011");
 
 function isPalindrome() {
-  console.log(dateResult.reverse());
+  if (dateResult === dateReverse) {
+    console.log("C'est un palindrome");
+  } else {
+    console.log("Ce n'est pas un palindrome");
+  }
 }
