@@ -17,6 +17,15 @@ buttonValidate.addEventListener("click", () => {
   // console.log(inputDate.value);
 });
 
+inputDate.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    errorMessage.innerHTML = "";
+    palindromeIsCorrect.innerHTML = "";
+    palindromeIsIncorrect.innerHTML = "";
+    isValidDate(inputDate.value);
+  }
+});
+
 function isValidDate(date) {
   myArray.push(date);
   // console.log(myArray);
