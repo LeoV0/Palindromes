@@ -2,11 +2,26 @@ let myArray = [];
 let dateResult;
 let dateReverse;
 
+// Rajouter des input + afficher du texte sur la page HTML
+const inputDate = document.querySelector("#dateInput");
+const buttonValidate = document.querySelector("#btn");
+const errorMessage = document.querySelector("#messageErreur");
+const palindromeIsCorrect = document.querySelector("#isPalindrome");
+const palindromeIsIncorrect = document.querySelector("#isIncorrectPalindrome");
+
+buttonValidate.addEventListener("click", () => {
+  errorMessage.innerHTML = "";
+  palindromeIsCorrect.innerHTML = "";
+  palindromeIsIncorrect.innerHTML = "";
+  isValidDate(inputDate.value);
+  // console.log(inputDate.value);
+});
+
 function isValidDate(date) {
   myArray.push(date);
-  console.log(myArray);
+  // console.log(myArray);
   const destructure = myArray[0].split("/").map(Number);
-  console.log(destructure);
+  // console.log(destructure);
   if (
     destructure[0] < 1 ||
     destructure[0] > 31 ||
@@ -15,10 +30,13 @@ function isValidDate(date) {
     destructure[2] < 999 ||
     destructure[2] > 9999
   ) {
-    console.log("La date n'est pas valide");
+    errorMessage.innerHTML = `La date n'est pas valide`;
+    myArray = [];
+    // console.log("La date n'est pas valide");
     return;
   } else if (destructure[1] % 2 === 1 && destructure[0] === 31) {
-    console.log("Il n'y a pas de 31 du mois");
+    errorMessage.innerHTML = `La date n'est pas valide`;
+    // console.log("La date n'est pas valide");
     return;
   } else {
     dateResult = [
@@ -29,24 +47,27 @@ function isValidDate(date) {
 
     dateReverse = dateResult.split("").reverse().join("");
 
-    console.log("La date est valide");
-    console.log(` Normal : ${dateResult}`);
-    console.log(` Reverse : ${dateReverse}`);
+    // console.log("La date est valide");
+    // console.log(` Normal : ${dateResult}`);
+    // console.log(` Reverse : ${dateReverse}`);
 
     isPalindrome();
     return;
   }
 }
-isValidDate("11/10/2011");
 
 function isPalindrome() {
   if (dateResult === dateReverse) {
-    console.log("C'est un palindrome");
+    palindromeIsCorrect.innerHTML = `C'est un palindrome ! Votre date : ${dateResult}, inversée : ${dateReverse}`;
+    // console.log("C'est un palindrome");
   } else {
-    console.log("Ce n'est pas un palindrome");
+    palindromeIsIncorrect.innerHTML = `Ce n'est pas un palindrome ! Votre date : ${dateResult}, inversée : ${dateReverse}`;
+    // console.log("Ce n'est pas un palindrome");
   }
+  myArray = [];
 }
 
+// Afficher les palindromes dans les années qui suivent
 let tableau = [];
 let tableauRempli;
 let tableauReverse;
@@ -83,4 +104,4 @@ function getNextPalindromes(x) {
   console.log(`Nombre total de palindromes trouvé : ${palindromesFound}`);
 }
 
-getNextPalindromes(12);
+getNextPalindromes(4);
